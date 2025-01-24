@@ -46,6 +46,11 @@ OBLIGATORIO: Utilizar php tipado, en los metodos. Tanto para los parámetros com
 
 > **Obligatorio**: Crear diagrama UML de clases
 
+> **Diagrama UML** https://www.figma.com/board/PqyTSWM2C6wy8X8JOWC3b5/UML?node-id=0-1&t=2Da593p4p9NNAkDy-1 subido también como archivo pdf al repo
+
+(./uml.png)
+
+
 ## Entrega
 * La entrega de la prueba técnica es por email (a la misma dirección desde el cual se envio el link a este repositorio) y el código puede estar en:
     * Los IDEs online suministrados en cuyo caso solo vamos a requerir los links.
