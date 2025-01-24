@@ -6,7 +6,7 @@ Nuestra primera tarea consiste en escribir un query sql que alimente un reporte 
 
 Al día siguiente notamos que el equipo backend se encuentra algo atareado así que decidimos hacer gala de nuestros conocimientos en PHP y ayudarlos. Nos cuentan que necesitan ayuda con el buscador de destinos. Estos destinos se encuentran organizados como una jerarquía en un árbol y dado que los mismos vienen de un servicio externo que siempre se encuentran cambiando, no pueden contar con que el árbol tenga siempre la misma cantidad de niveles y nos piden si podemos implementar la función que necesitan para buscar en el árbol. La misma recibe como argumentos, el árbol con los destinos y el texto a buscar (en cualquier parte del nombre).
 
-> https://phpsandbox.io/n/hhrr-search-into-tree-gbizl (van a necesitar hacer un fork para editarlo)
+> Ejercicio resuelto: https://phpsandbox.io/e/x/7fmsa?layout=EditorPreview&defaultPath=%2F&theme=dark&showExplorer=no&openedFiles=
 
 > **Extra**: que en lugar de buscar por texto pueda recibir el criterio de búsqueda como función (función de orden superior)
 
