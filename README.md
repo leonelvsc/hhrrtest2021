@@ -48,7 +48,7 @@ OBLIGATORIO: Utilizar php tipado, en los metodos. Tanto para los parámetros com
 
 > **Diagrama UML** https://www.figma.com/board/PqyTSWM2C6wy8X8JOWC3b5/UML?node-id=0-1&t=2Da593p4p9NNAkDy-1 subido también como archivo pdf al repo
 
-(./uml.png)
+![diagrama uml](./uml.png)
 
 
 ## Entrega
