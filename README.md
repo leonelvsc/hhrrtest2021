@@ -48,8 +48,13 @@ OBLIGATORIO: Utilizar php tipado, en los metodos. Tanto para los parámetros com
 
 > **Diagrama UML** https://www.figma.com/board/PqyTSWM2C6wy8X8JOWC3b5/UML?node-id=0-1&t=2Da593p4p9NNAkDy-1 subido también como archivo pdf al repo
 
+**Diseño en la fase de arquitectura**
+
 ![diagrama uml](./uml.png)
 
+> **Solucion** [Implementación en Symfony](./backend/api)
+
+![diagrama final](./uml-sin-relaciones-final.png)
 
 ## Entrega
 * La entrega de la prueba técnica es por email (a la misma dirección desde el cual se envio el link a este repositorio) y el código puede estar en:
