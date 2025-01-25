@@ -32,6 +32,7 @@ class HojaRuta implements HojaRutaInterface
     }
 
     /**
+     * Este no sabía si dejarlo inmutable ya que luego las hojas de rutas se agrupan
      * @var HojaRutaInterface|null
      */
     #[ManyToOne(targetEntity: HojaRutaInterface::class, inversedBy: 'hojaRutas')]
@@ -54,6 +55,9 @@ class HojaRuta implements HojaRutaInterface
         }
         set {
             $this->hojaRutas = $value;
+            $this->hojaRutas->forAll((function(HojaRutaInterface $hojaRuta) {
+                $hojaRuta->hojaRutaPadre = $this;
+            }));
         }
     }
 
@@ -67,15 +71,21 @@ class HojaRuta implements HojaRutaInterface
         }
         set {
             $this->viajes = $value;
+            $this->viajes->forAll((function(ViajeInterface $viaje) {
+                $viaje->hojaRuta = $this;
+            }));
         }
     }
 
     /**
      *
      */
-    public function __construct() {
-        $this->hojaRutas = new ArrayCollection();
-        $this->viajes = new ArrayCollection();
+    public function __construct(
+        ReadableCollection $hojaRutas,
+        ReadableCollection $viajes
+    ) {
+        $this->hojaRutas = $hojaRutas;
+        $this->viajes = $viajes;
     }
 
 
@@ -111,31 +121,12 @@ class HojaRuta implements HojaRutaInterface
 
     /**
      * @param \Closure $callback
-     * @return float|mixed|null
+     * @return float
      */
-    private function reduceViajes(\Closure $callback) {
+    private function reduceViajes(\Closure $callback): float {
         return $this->viajes->reduce(function($sum, ViajeInterface $viaje) use ($callback) {
             return $sum + $callback($viaje);
         }, 0.0);
     }
 
-    /**
-     * @param HojaRutaInterface $hojaRuta
-     * @return void
-     */
-    public function addHojaRuta(HojaRutaInterface $hojaRuta): void
-    {
-        $this->hojaRutas->add($hojaRuta);
-        $hojaRuta->hojaRutaPadre = $this;
-    }
-
-    /**
-     * @param ViajeInterface $viaje
-     * @return void
-     */
-    public function addViaje(ViajeInterface $viaje): void
-    {
-        $this->viajes->add($viaje);
-        $viaje->hojaRuta = $this;
-    }
 }

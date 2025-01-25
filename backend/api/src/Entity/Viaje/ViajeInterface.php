@@ -15,13 +15,9 @@ interface ViajeInterface
     /**
      * @var Collection
      */
-    public ReadableCollection$paquetes { get; }
-
-    /**
-     * @param PaqueteInterface $paquete
-     * @return void
-     */
-    public function addPaquete(PaqueteInterface $paquete): void;
+    public ReadableCollection $paquetes { get; }
+    public DireccionInterface $origen { get; }
+    public DireccionInterface $destino { get; }
 
     /**
      * @return float

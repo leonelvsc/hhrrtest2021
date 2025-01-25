@@ -56,7 +56,7 @@ class BaseViaje implements ViajeInterface
     }
 
     /**
-     * @var Collection
+     * @var ReadableCollection<int, PaqueteInterface>
      */
     #[OneToMany(targetEntity: PaqueteInterface::class, mappedBy: 'viaje')]
     private(set) ReadableCollection $paquetes {
@@ -65,6 +65,10 @@ class BaseViaje implements ViajeInterface
         }
         set {
             $this->paquetes = $value;
+
+            $this->paquetes->forAll((function(PaqueteInterface $paquete) {
+                $paquete->viaje = $this;
+            }));
         }
     }
 
@@ -72,7 +76,7 @@ class BaseViaje implements ViajeInterface
      * @var DireccionInterface|null
      */
     #[ManyToOne(targetEntity: DireccionInterface::class)]
-    public ?DireccionInterface $origen {
+    private(set) DireccionInterface $origen {
         get {
             return $this->origen;
         }
@@ -85,7 +89,7 @@ class BaseViaje implements ViajeInterface
      * @var DireccionInterface|null
      */
     #[ManyToOne(targetEntity: DireccionInterface::class)]
-    public ?DireccionInterface $destino {
+    private(set) DireccionInterface $destino {
         get {
             return $this->destino;
         }
@@ -94,22 +98,16 @@ class BaseViaje implements ViajeInterface
         }
     }
 
-    /**
-     *
-     */
-    public function __construct()
-    {
-        $this->paquetes = new ArrayCollection();
-    }
 
-    /**
-     * @param PaqueteInterface $paquete
-     * @return void
-     */
-    public function addPaquete(PaqueteInterface $paquete): void
+    public function __construct(
+        DireccionInterface $origen,
+        DireccionInterface $destino,
+        ReadableCollection $paquetes
+    )
     {
-        $this->paquetes->add($paquete);
-        $paquete->viaje = $this;
+        $this->paquetes = $paquetes;
+        $this->origen = $origen;
+        $this->destino = $destino;
     }
 
     /**
@@ -134,9 +132,9 @@ class BaseViaje implements ViajeInterface
 
     /**
      * @param \Closure $callback
-     * @return float|mixed|null
+     * @return float
      */
-    private function reducePaquetes(\Closure $callback) {
+    private function reducePaquetes(\Closure $callback): float {
         return $this->paquetes->reduce(function($sum, PaqueteInterface $paquete) use ($callback) {
             return $sum + $callback($paquete);
         }, 0.0);

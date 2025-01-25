@@ -36,16 +36,4 @@ interface HojaRutaInterface
      * @return float
      */
     public function calcularCosto(): float;
-
-    /**
-     * @param HojaRutaInterface $hojaRuta
-     * @return void
-     */
-    public function addHojaRuta(HojaRutaInterface $hojaRuta): void;
-
-    /**
-     * @param ViajeInterface $viaje
-     * @return void
-     */
-    public function addViaje(ViajeInterface $viaje): void;
 }
